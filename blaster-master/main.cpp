@@ -4,17 +4,21 @@
 
 #include "Game.h"
 #include "GameObject.h"
+#include "SceneManager.h"
 #include "Constants.h"
 #include "Textures.h"
 
 #include "Trigger.h"
+#include "TopdownScene.h"
 
 #pragma comment(lib, "d3d9.lib")
 #pragma comment(lib, "d3dx9.lib")
 
 Game* game;
 
-Trigger* trigger;
+//Trigger* trigger;
+
+SceneManager* sceneManager;
 
 bool isOver = false;
 
@@ -72,7 +76,7 @@ HWND CreateGameWindow(HINSTANCE hInstance, int nCmdShow)
 
 void Update(DWORD timeBetweenLastAndNow)
 {
-    trigger->Update(timeBetweenLastAndNow);
+    sceneManager->Update(timeBetweenLastAndNow);
 }
 
 void Render()
@@ -87,7 +91,8 @@ void Render()
 
         spriteHandler->Begin(D3DXSPRITE_ALPHABLEND);
 
-        trigger->Render();
+        //trigger->Render();
+        sceneManager->Render();
 
         spriteHandler->End();
         d3ddev->EndScene();
@@ -119,6 +124,9 @@ void Run()
         if (timeBetweenLastAndNow >= tickPerFrame)
         {
             frameStart = now;
+
+            game->ProcessKeyboard();
+
             Update(timeBetweenLastAndNow);
             Render();
         }
@@ -135,7 +143,13 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     game = Game::GetInstance();
     game->Init(hWnd);
 
-    LoadResource();
+    sceneManager = SceneManager::GetInstance();
+    sceneManager->SetScene(new TopdownScene());
+
+    game->InitKeyboard();
+
+    SetWindowPos(hWnd, 0, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, SWP_NOMOVE | SWP_NOOWNERZORDER | SWP_NOZORDER);
+
     Run();
 
     return 0;
