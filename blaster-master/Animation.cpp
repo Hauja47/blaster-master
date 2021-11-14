@@ -16,7 +16,7 @@ void Animation::Add(int spriteId, DWORD time)
 	frames.push_back(frame);
 }
 
-void Animation::Render(float x, float y)
+void Animation::GetFrameByTime()
 {
 	DWORD now = GetTickCount();
 	if (currentFrame == -1)
@@ -37,6 +37,54 @@ void Animation::Render(float x, float y)
 			}
 		}
 	}
+}
 
+void Animation::Render(float x, float y)
+{
+	/*DWORD now = GetTickCount();
+	if (currentFrame == -1)
+	{
+		currentFrame = 0;
+		lastFrameTime = now;
+	}
+	else
+	{
+		DWORD t = frames[currentFrame]->GetTime();
+		if (now - lastFrameTime > t)
+		{
+			currentFrame++;
+			lastFrameTime = now;
+			if (currentFrame == frames.size())
+			{
+				currentFrame = 0;
+			}
+		}
+	}*/
+	GetFrameByTime();
 	frames[currentFrame]->GetSprite()->Draw(x, y);
+}
+
+void Animation::RenderFlipX(float x, float y)
+{
+	/*DWORD now = GetTickCount();
+	if (currentFrame == -1)
+	{
+		currentFrame = 0;
+		lastFrameTime = now;
+	}
+	else
+	{
+		DWORD t = frames[currentFrame]->GetTime();
+		if (now - lastFrameTime > t)
+		{
+			currentFrame++;
+			lastFrameTime = now;
+			if (currentFrame == frames.size())
+			{
+				currentFrame = 0;
+			}
+		}
+	}*/
+	GetFrameByTime();
+	frames[currentFrame]->GetSprite()->DrawFlipX(x, y);
 }
