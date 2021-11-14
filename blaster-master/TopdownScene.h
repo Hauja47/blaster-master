@@ -15,7 +15,8 @@ protected:
 
 	std::vector<GameObject*> listObj;
 public:
-	TopdownScene(int id);
+	//TopdownScene(int id);
+	TopdownScene();
 
 	virtual void Load();
 	virtual void Update(DWORD dt);
