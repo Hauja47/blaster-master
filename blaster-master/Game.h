@@ -2,8 +2,12 @@
 #include <Windows.h>
 #include <d3d9.h>
 #include <d3dx9.h>
+
 #include <dinput.h>
+
 #include "KeyEventHandler.h"
+#include "debug.h"
+#include "SceneManager.h"
 
 #define DIRECTINPUT_VERSION 0x0800
 
@@ -43,6 +47,7 @@ public:
 	LPD3DXSPRITE GetSpriteHandler();
 
 	void InitKeyboard();
+	void SetKeyHandler(LPKEYEVENTHANDLER handler) { keyHandler = handler; }
 	void ProcessKeyboard();
 	void Init(HWND hWnd);
 	void Update();
