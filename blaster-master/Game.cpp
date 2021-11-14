@@ -1,7 +1,5 @@
 #include "Game.h"
 
-#include <d3d9.h>
-#include <d3dx9.h>
 #include "debug.h"
 
 Game* Game::_instance = NULL;
@@ -122,34 +120,36 @@ void Game::InitKeyboard()
 
 void Game::ProcessKeyboard()
 {
-	HRESULT result = didev->GetDeviceState(sizeof(keyStates), keyStates);
+	HRESULT hr = didev->GetDeviceState(sizeof(keyStates), keyStates);
 
-	if (FAILED(result))
+	if (FAILED(hr))
 	{
-		if ((result == DIERR_INPUTLOST) || (result == DIERR_NOTACQUIRED))
+		if ((hr == DIERR_INPUTLOST) || (hr == DIERR_NOTACQUIRED))
 		{
-			HRESULT hr = didev->Acquire();
-			if (hr == DI_OK)
-			{ 
+			HRESULT h = didev->Acquire();
+			if (h == DI_OK)
+			{
 				DebugOut(L"[INFO] Keyboard re-acquired!\n");
 			}
-			else 
+			else
+			{
 				return;
+			}
 		}
-	}
-	else
-	{
-		DebugOut(L"[ERROR] DINPUT::GetDeviceState failed. Error: %d\n", result);
-		return;
+		else
+		{
+			DebugOut(L"[ERROR] DINPUT::GetDeviceState failed. Error: %d\n", hr);
+			return;
+		}
 	}
 
 	keyHandler->KeyState((BYTE*)&keyStates);
 
 	DWORD dwElements = KEYBOARD_BUFFER_SIZE;
-	result = didev->GetDeviceData(sizeof(DIDEVICEOBJECTDATA), keyEvents, &dwElements, 0);
-	if (FAILED(result))
+	hr = didev->GetDeviceData(sizeof(DIDEVICEOBJECTDATA), keyEvents, &dwElements, 0);
+	if (FAILED(hr))
 	{
-		DebugOut(L"[ERROR] DINPUT::GetDeviceData failed. Error: %d\n", result);
+		DebugOut(L"[ERROR] DINPUT::GetDeviceData failed. Error: %d\n", hr);
 		return;
 	}
 
