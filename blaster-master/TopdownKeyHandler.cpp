@@ -30,33 +30,43 @@ void TopdownKeyHandler::KeyState(BYTE* states)
 void TopdownKeyHandler::OnKeyDown(int KeyCode)
 {
 	DebugOut(L"[INFO] KeyDown: %d\n", KeyCode);
+}
 
+void TopdownKeyHandler::OnKeyUp(int KeyCode)
+{
+	DebugOut(L"[INFO] KeyUp: %d\n", KeyCode);
+
+	Game* game = Game::GetInstance();
 	TopdownJason* jason = ((TopdownScene*)scence)->GetPlayer();
+
+	float vx, vy;
+	jason->GetSpeed(vx, vy);
 
 	switch (KeyCode)
 	{
 	case DIK_UP:
-		if (jason->GetState() == JASON_GO_LEFT || jason->GetState() == JASON_GO_RIGHT)
-			return;
-		jason->SetState(JASON_GO_UP);
-		break;
 	case DIK_DOWN:
-		if (jason->GetState() == JASON_GO_LEFT || jason->GetState() == JASON_GO_RIGHT)
-			return;
-		jason->SetState(JASON_GO_DOWN);
+		if (vx > 0)
+		{
+			jason->SetState(JASON_GO_RIGHT);
+		}
+		else if (vx < 0)
+		{
+			jason->SetState(JASON_GO_LEFT);
+		}
 		break;
 	case DIK_LEFT:
-		if (jason->GetState() == JASON_GO_UP || jason->GetState() == JASON_GO_DOWN)
-			return;
-		jason->SetState(JASON_GO_LEFT);
-		break;
 	case DIK_RIGHT:
-		if (jason->GetState() == JASON_GO_UP || jason->GetState() == JASON_GO_DOWN)
-			return;
-		jason->SetState(JASON_GO_RIGHT);
+		if (vy > 0)
+		{
+			jason->SetState(JASON_GO_DOWN);
+		}
+		else if (vy < 0)
+		{
+			jason->SetState(JASON_GO_UP);
+		}
 		break;
 	default:
-		jason->SetIdleState();
 		break;
 	}
 }
