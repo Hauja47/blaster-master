@@ -45,11 +45,6 @@ void GameObject::SetState(int state)
 	this->state = state;
 }
 
-void GameObject::SetAnimation(LPANIMATIONSET animations)
-{
-	this->animations = animations;
-}
-
 int GameObject::GetState()
 {
 	return this->state;

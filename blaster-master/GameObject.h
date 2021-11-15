@@ -22,7 +22,6 @@ protected:
 
 	DWORD dt;
 
-	LPANIMATIONSET animations;
 
 public:
 	GameObject();
@@ -40,8 +39,6 @@ public:
 	virtual void Update(DWORD dt);
 	virtual void Render() = 0;
 	virtual void SetState(int state);
-
-	void SetAnimation(LPANIMATIONSET animations);
 
 	~GameObject();
 };
