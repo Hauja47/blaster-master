@@ -1,0 +1,83 @@
+[TEXTURES]
+# id	file_path					transparent_r	transparent_g	transparent_b
+0 	resources\character\jason_and_sophia.png	0		5		115
+1 	resources\enemies\enemies.png 			255 		255 		255
+[SPRITES]
+# id	left	top	right	bottom	texture_id
+# Sophia
+# Hatch
+# Idle
+20001	39	3	55	11	0
+# Change direction
+20011	56	3	72	11	0
+# Open
+20021	125	3	141	19	0
+20022	142	3	158	19	0
+# Turn up
+20031	73	3	89	19	0
+# Body
+20041	3	12	11	20	0
+# Wheel
+20051	3	21	11	29	0
+20052	12	21	20	29	0
+20053	21	21	29	29	0
+20054	30	21	38	29	0
+# Gun
+# Up-right
+20061	3	3	11	11	0
+# Left
+20062	12	3	20	11	0
+# Up-left
+20063	21	3	29	11	0
+# Up
+20064	30	3	38	11	0
+# Die
+20071	159	3	197	43	0
+20072	143	44	207	92	0
+# Jason
+# Idle
+30001	3	30	11	46	0
+# Move
+30011	12	30	20	46	0
+30012	21	30	29	46	0
+30013	30	30	38	46	0
+# Crawl
+30021	3	47	19	55	0	
+30022	20	47	36	55	0
+# Die
+30031	3	64	19	80	0
+30032	54	64	70	80	0
+30033	37	64	54	80	0
+30034	20	64	36	80	0
+30035	3	81	19	97	0
+30036	20	89	36	97	0
+[ANIMATIONS]
+# id	sprite1_id ...
+# Sophia
+# Die
+2007	20071	20072
+# Wheel
+2005	20051	20052	20053	20054
+# Hatch
+# Open
+2002	20021	20022
+# Change direction
+2001	20011
+# Turn up
+2003	20031
+# Gun
+# Turn up(left)
+2006	20063	20031
+# Turn up(right)
+2003	20061	20031
+# Jason
+# Idle
+3000	30001
+# Move
+3001	30011	30012	30013
+# Jump
+3006	30011
+# Crawl
+3002	30021	30022
+# Die
+3003	30031	30032	30033	30034	30031	30032	30033	30034	30031	30032	30033	30034	30035	30036

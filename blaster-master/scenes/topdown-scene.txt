@@ -1,0 +1,42 @@
+[TEXTURES]
+# id	file_path					transparent_r	transparent_g	transparent_b
+0 	resources\character\jason_and_sophia.png	0		5		115
+1 	resources\enemies\enemies.png 			255 		255 		255
+[SPRITES]
+# id	left	top	right	bottom	texture_id
+# TOP-DOWN JASON
+# go left
+10001	208	69	232	101	0
+10002	233	69	257	101	0
+10003	258	69	282	101	0
+# go down
+10011	208	3	232	35	0
+10012	233	3	257	35	0
+10013	258	3	282	35	0
+# go up
+10021	208	36	232	68	0
+10022	233	36	257	68	0
+10023	258	36	282	68	0
+# die
+10061	283	3	307	35	0
+10062	308	3	332	35	0
+10063	333	3	357	35	0
+10064	358	3	382	35	0
+10065	383	19	407	25	0
+[ANIMATIONS]
+# id	sprite1_id ...
+# TOP-DOWN JASON
+# go left
+1000	10001	10002	10003
+# go down
+1001	10011	10012	10013
+# go up
+1002	10021	10022	10023
+# idle left
+1003	10002
+# idle down
+1004	10012
+# idle up
+1005	10022
+# die
+1006	10012	10002	10022	10002	10012	10002	10022	10002	10012	10002	10022	10002	10061	10061	10062	10063	10064	10065
