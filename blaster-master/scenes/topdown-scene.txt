@@ -1,7 +1,7 @@
 [TEXTURES]
-# id	file_path					transparent_r	transparent_g	transparent_b
-0 	resources\character\jason_and_sophia.png	0		5		115
-1 	resources\enemies\enemies.png 			255 		255 		255
+# id	file_path	transparent_r	transparent_g	transparent_b
+0	resources\character\jason_and_sophia.png	0	57	115
+1	resources\enemies\enemies.png	255	255	255
 [SPRITES]
 # id	left	top	right	bottom	texture_id
 # TOP-DOWN JASON
@@ -40,3 +40,7 @@
 1005	10022
 # die
 1006	10012	10002	10022	10002	10012	10002	10022	10002	10012	10002	10022	10002	10061	10061	10062	10063	10064	10065
+[OBJECTS]
+# type	start_x	start_y	extra_settings per object type
+# Jason
+2	50.0	50.0	hidden
