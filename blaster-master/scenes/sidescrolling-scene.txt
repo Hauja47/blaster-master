@@ -81,3 +81,9 @@
 3002	30021	30022
 # Die
 3003	30031	30032	30033	30034	30031	30032	30033	30034	30031	30032	30033	30034	30035	30036
+[OBJECTS]
+# type	start_x	start_y	extra_settings per object type
+# Sophia
+0	50.0	50.0
+# Jason
+1	0.0	0.0	hidden
