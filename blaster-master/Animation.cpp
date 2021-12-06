@@ -39,6 +39,39 @@ void Animation::GetFrameByTime()
 	}
 }
 
+void Animation::GetFrameByTime_Reverse()
+{
+	DWORD now = GetTickCount();
+	if (currentFrame == frames.size())
+	{
+		currentFrame = frames.size() - 1;
+		lastFrameTime = now;
+	}
+	else
+	{
+		DWORD t = frames[currentFrame]->GetTime();
+		if (now - lastFrameTime > t)
+		{
+			currentFrame--;
+			lastFrameTime = now;
+			if (currentFrame == -1)
+			{
+				currentFrame = frames.size() - 1;
+			}
+		}
+	}
+}
+
+void Animation::SetCurrentFrame(int frame)
+{
+	this->currentFrame = frame;
+}
+
+int Animation::GetCurrentFrame()
+{
+	return currentFrame;
+}
+
 void Animation::Render(float x, float y)
 {
 	GetFrameByTime();
@@ -49,4 +82,20 @@ void Animation::RenderFlipX(float x, float y)
 {
 	GetFrameByTime();
 	frames[currentFrame]->GetSprite()->DrawFlipX(x, y);
+}
+
+void Animation::RenderCurrentFrame(float x, float y)
+{
+	frames[currentFrame]->GetSprite()->Draw(x, y);
+}
+
+void Animation::RenderByFrame(float x, float y, int frame)
+{
+	frames[frame]->GetSprite()->Draw(x, y);
+}
+
+void Animation::Render_Reverse(float x, float y)
+{
+	GetFrameByTime_Reverse();
+	frames[currentFrame]->GetSprite()->Draw(x, y);
 }
