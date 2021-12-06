@@ -5,7 +5,7 @@
 class SceneKeyHandler : public KeyEventHandler
 {
 protected:
-	Scene* scence;
+	Scene* scene;
 public:
 	virtual void KeyState(BYTE* states) = 0;
 	virtual void OnKeyDown(int KeyCode) = 0;
